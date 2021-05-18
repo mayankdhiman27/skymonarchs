@@ -81,9 +81,13 @@ public class BinDataController {
 
                         int thrashLevelFinal = Integer.parseInt(thrashLevel);
 
-                        Float filledPercentage = (float) (1 - thrashLevelFinal/110);
+                        Float trashPercent = ((float)thrashLevelFinal / (float)110);
 
-                        clientResponse.setPercentage(String.valueOf(1 - thrashLevelFinal/110));
+                        log.info("trashPercent {}", trashPercent);
+
+                        Float filledPercentage = (float) ((float)1 - trashPercent);
+
+                        clientResponse.setPercentage(filledPercentage.toString());
 
                         if (filledPercentage >= 0.75) {
                             clientResponse.setColorCode(TrashLevelColorCoding.FULL.getValue());
